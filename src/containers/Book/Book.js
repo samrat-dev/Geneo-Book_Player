@@ -1,5 +1,4 @@
 import React from 'react'
-// import './Book.css';
 import './Book.scss';
 
 export default function Book() {
