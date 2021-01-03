@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Book from './containers/Book/Book';
@@ -13,13 +13,27 @@ const Welcome = styled.div`
   font-size: 2rem;
   color: #bbb2b2;
   text-shadow: 1px 2px 1px #03A9F4;
+  flex-direction: column;
+  a {
+    font-size: 1rem;
+    text-decoration: none;
+    margin-right: 1rem;
+  }
 `;
 
 export default function Routes() {
     return (
         <>
             <Route path="/" exact>
-                <Welcome> Welcome to geneo Book player </Welcome>
+                <Welcome>
+                    <div>
+                        Welcome to geneo Book player
+                    </div>
+                    <div>
+                        <Link to='/practise'>Practise</Link>
+                        <Link to='/books'>Books</Link>
+                    </div>
+                </Welcome>
             </Route>
             <Switch>
                 <Route path="/books" exact component={Book} />
