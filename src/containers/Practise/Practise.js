@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-// import axios from 'axios';
+// import axios from 'axios'; 
 import './Practise.scss';
 
 const WelcomePractise = <div style={{ padding: '1rem' }}>
