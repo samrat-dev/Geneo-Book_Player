@@ -1,0 +1,14 @@
+.search {
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 150px;
+    line-height: 30px;
+}
+
+.search-input {
+    display: flex;
+    justify-content: center;
+    padding: 0.41rem 0;
+}
