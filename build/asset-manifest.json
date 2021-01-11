@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/geneo-book_player/static/css/main.6af75d08.chunk.css",
+    "main.js": "/geneo-book_player/static/js/main.d72ae423.chunk.js",
+    "main.js.map": "/geneo-book_player/static/js/main.d72ae423.chunk.js.map",
+    "runtime-main.js": "/geneo-book_player/static/js/runtime-main.efdbe53b.js",
+    "runtime-main.js.map": "/geneo-book_player/static/js/runtime-main.efdbe53b.js.map",
+    "static/js/2.5451ec57.chunk.js": "/geneo-book_player/static/js/2.5451ec57.chunk.js",
+    "static/js/2.5451ec57.chunk.js.map": "/geneo-book_player/static/js/2.5451ec57.chunk.js.map",
+    "index.html": "/geneo-book_player/index.html",
+    "static/css/main.6af75d08.chunk.css.map": "/geneo-book_player/static/css/main.6af75d08.chunk.css.map",
+    "static/js/2.5451ec57.chunk.js.LICENSE.txt": "/geneo-book_player/static/js/2.5451ec57.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.efdbe53b.js",
+    "static/js/2.5451ec57.chunk.js",
+    "static/css/main.6af75d08.chunk.css",
+    "static/js/main.d72ae423.chunk.js"
+  ]
+}
