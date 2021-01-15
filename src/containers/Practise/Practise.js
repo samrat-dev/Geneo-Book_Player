@@ -16,7 +16,7 @@ export default class Practise extends Component {
         super();
         this.state = {
             monsters: [],
-            searchField: ''
+            searchField: '',
         };
 
         // this.handleChange = this.handleChange.bind(this);
@@ -33,6 +33,9 @@ export default class Practise extends Component {
                 log(err);
             });
 
+    }
+    shouldComponentUpdate(nextProps, nextState){
+        return true;
     }
     handleChange = (e) => {
         this.setState({ searchField: e.target.value })
