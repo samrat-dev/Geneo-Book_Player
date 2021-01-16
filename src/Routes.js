@@ -1,9 +1,10 @@
-import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { Route, Switch, Link } from "react-router-dom";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
-import Book from './containers/Book/Book';
-import Practise from './containers/Practise/Practise';
+import Book from "./containers/Book/Book";
+import Practise from "./containers/Practise/Practise";
 
 const Welcome = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const Welcome = styled.div`
   height: 70vh;
   font-size: 2rem;
   color: #bbb2b2;
-  text-shadow: 1px 2px 1px #03A9F4;
+  text-shadow: 1px 2px 1px #03a9f4;
   flex-direction: column;
   a {
     font-size: 1rem;
@@ -21,25 +22,23 @@ const Welcome = styled.div`
   }
 `;
 
-export default function Routes() {
-    return (
-        <>
-            <Route path="/" exact>
-                <Welcome>
-                    <div>
-                        Welcome to geneo Book player
-                    </div>
-                    <div>
-                        <Link to='/practise'>Practise</Link>
-                        <Link to='/books'>Books</Link>
-                    </div>
-                </Welcome>
-            </Route>
-            <Switch>
-                <Route path="/books" exact component={Book} />
-                <Route path="/practise" exact component={Practise} />
-            </Switch>
-        </>
-    )
+export default function Routes(props) {
+  let history = useHistory();
+  return (
+    <>
+      <Route path="/" exact>
+        <Welcome>
+          <div>Welcome to geneo Book player</div>
+          <div>
+            <Link to="/practise">Practise</Link>
+            <Link to="/books">Books</Link>
+          </div>
+        </Welcome>
+      </Route>
+      <Switch>
+        <Route path="/books" exact component={Book} />
+        <Route path="/practise" exact component={Practise} />
+      </Switch>
+    </>
+  );
 }
-
