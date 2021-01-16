@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, Component } from 'react';
-import HomePage from './components/homepage/homepage';
+import HomePage from './pages/homepage/homepage';
 // import axios from 'axios'; 
 import './Practise.scss';
 
