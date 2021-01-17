@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import Book from "./containers/Book/Book";
 import Practise from "./containers/Practise/Practise";
+import { PractiseLinks, PractiseRoutes } from "./containers/Practise/PractiseRoutes";
 
 const Welcome = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ export default function Routes(props) {
           <div>Welcome to geneo Book player</div>
           <div>
             <Link to="/practise">Practise</Link>
+            <PractiseLinks />
             <Link to="/books">Books</Link>
           </div>
         </Welcome>
@@ -38,6 +40,7 @@ export default function Routes(props) {
       <Switch>
         <Route path="/books" exact component={Book} />
         <Route path="/practise" exact component={Practise} />
+        <PractiseRoutes />
       </Switch>
     </>
   );
