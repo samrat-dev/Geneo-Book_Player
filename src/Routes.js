@@ -5,7 +5,11 @@ import { useHistory } from "react-router-dom";
 
 import Book from "./containers/Book/Book";
 import Practise from "./containers/Practise/Practise";
-import { PractiseLinks, PractiseRoutes } from "./containers/Practise/PractiseRoutes";
+import {
+  PractiseLinks,
+  PractiseRoutes,
+} from "./containers/Practise/PractiseRoutes";
+import Header from "./containers/Practise/components/header/header";
 
 const Welcome = styled.div`
   display: flex;
@@ -37,6 +41,7 @@ export default function Routes(props) {
           </div>
         </Welcome>
       </Route>
+      <Route path="/practise" component={Header} />
       <Switch>
         <Route path="/books" exact component={Book} />
         <Route path="/practise" exact component={Practise} />

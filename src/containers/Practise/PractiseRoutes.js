@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Route, Switch, Link } from "react-router-dom";
+
 import ShopPage from "./pages/shop/shop";
+import Header from './components/header/header'
 
 export function PractiseRoutes() {
   return (
@@ -13,7 +15,6 @@ export function PractiseRoutes() {
 export function PractiseLinks() {
   return (
     <Fragment>
-      <Link to="/practise/shop">Shop</Link>
     </Fragment>
   );
 }
