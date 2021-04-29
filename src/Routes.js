@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 
 import Book from "./containers/Book/Book";
 import Practise from "./containers/Practise/Practise";
@@ -28,12 +27,11 @@ const Welcome = styled.div`
 `;
 
 export default function Routes(props) {
-  let history = useHistory();
   return (
     <>
       <Route path="/" exact>
         <Welcome>
-          <div>Welcome to geneo Book player</div>
+          <div>React practise</div>
           <div>
             <Link to="/practise">Practise</Link>
             <PractiseLinks />
