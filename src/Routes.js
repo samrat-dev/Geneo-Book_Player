@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import Book from "./containers/Book/Book";
 import Practise from "./containers/Practise/Practise";
+import { auth } from './containers/Practise/firebase/firebase.util';
+
 import {
   PractiseLinks,
   PractiseRoutes,
@@ -25,10 +27,32 @@ const Welcome = styled.div`
     margin-right: 1rem;
   }
 `;
+export default class Routes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: null
+    }
+  }
 
-export default function Routes(props) {
-  return (
-    <>
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      // const { displayName, email, photoURL, uid, refreshToken } = user;
+      this.setState({ currentUser: user });
+      // console.log(user);
+    });
+    // this.unsubscribeFromAuth();
+  }
+
+  componentWillMount() {
+    if (this.unsubscribeFromAuth != null)
+      this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return <div>
       <Route path="/" exact>
         <Welcome>
           <div>React practise</div>
@@ -39,12 +63,15 @@ export default function Routes(props) {
           </div>
         </Welcome>
       </Route>
-      <Route path="/practise" component={Header} />
-      <Switch>
+      <Route path="/practise">
+        <Header currentUser={this.state.currentUser} />
+      </Route>
+      <Switch>  
         <Route path="/books" exact component={Book} />
         <Route path="/practise" exact component={Practise} />
         <PractiseRoutes />
       </Switch>
-    </>
-  );
+    </div>
+  }
 }
+
