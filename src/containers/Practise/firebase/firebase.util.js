@@ -13,6 +13,30 @@ const firebaseConfig = {
     measurementId: "G-5CM5HN0182"
 };
 
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if (!userAuth) return;
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const snapShot = await userRef.get();
+    if (!snapShot.exists) {
+        // const { displayName, email, photoURL, uid, refreshToken } = userAuth;
+        const { displayName, email } = userAuth;
+        const createdAt = new Date();
+        try {
+            await userRef.set({
+                displayName,
+                email,
+                createdAt,
+                ...additionalData
+            });
+        }
+        catch (error) {
+            console.log('error creating user!', error.message);
+        }
+    }
+    return userRef;
+    // console.log(snapShot);
+};
+
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
@@ -28,7 +52,7 @@ export default firebase;
 
 
 /**
- * https://console.firebase.google.com/project/crwn-db-c15e9/authentication/users
+ https://console.firebase.google.com/project/crwn-db-c15e9/authentication/users
  https://www.npmjs.com/package/firebase
  https://firebase.google.com/docs/reference/js/#firebase-javascript-sdk-reference
  https://firebase.google.com/docs/reference/js/firebase.auth.GoogleAuthProvider

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Book from "./containers/Book/Book";
 import Practise from "./containers/Practise/Practise";
-import { auth } from './containers/Practise/firebase/firebase.util';
+import { auth, createUserProfileDocument } from './containers/Practise/firebase/firebase.util';
 
 import {
   PractiseLinks,
@@ -38,15 +38,27 @@ export default class Routes extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      // const { displayName, email, photoURL, uid, refreshToken } = user;
-      this.setState({ currentUser: user });
-      // console.log(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          }, () => {
+          //  console.log(this.state);
+          });
+        });
+
+      }
+      this.setState({ currentUser: userAuth });
+      // console.log(userAuth);
     });
-    // this.unsubscribeFromAuth();
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     if (this.unsubscribeFromAuth != null)
       this.unsubscribeFromAuth();
   }
@@ -66,7 +78,7 @@ export default class Routes extends React.Component {
       <Route path="/practise">
         <Header currentUser={this.state.currentUser} />
       </Route>
-      <Switch>  
+      <Switch>
         <Route path="/books" exact component={Book} />
         <Route path="/practise" exact component={Practise} />
         <PractiseRoutes />

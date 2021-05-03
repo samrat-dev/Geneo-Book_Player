@@ -9,6 +9,9 @@ export function PractiseRoutes() {
     <Fragment>
       <Route path="/practise/shop" exact component={ShopPage} />
       <Route path="/practise/signin" exact component={SigninSignup} />
+      <Route path="/practise/test" exact>
+        hello
+      </Route>
     </Fragment>
   );
 }
