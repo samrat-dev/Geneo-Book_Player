@@ -11,6 +11,7 @@ import {
   PractiseRoutes,
 } from "./containers/Practise/PractiseRoutes";
 import Header from "./containers/Practise/components/header/header";
+import ReduxPractise from "./containers/ReduxPractise/ReduxPractise";
 
 const Welcome = styled.div`
   display: flex;
@@ -48,7 +49,7 @@ export default class Routes extends React.Component {
               ...snapShot.data()
             }
           }, () => {
-          //  console.log(this.state);
+            //  console.log(this.state);
           });
         });
 
@@ -71,6 +72,7 @@ export default class Routes extends React.Component {
           <div>
             <Link to="/practise">Practise</Link>
             <PractiseLinks />
+            <Link to="/redux-practise">Redux-Practise</Link>
             <Link to="/books">Books</Link>
           </div>
         </Welcome>
@@ -81,6 +83,7 @@ export default class Routes extends React.Component {
       <Switch>
         <Route path="/books" exact component={Book} />
         <Route path="/practise" exact component={Practise} />
+        <Route path="/redux-practise" exact component={ReduxPractise} />
         <PractiseRoutes />
       </Switch>
     </div>
