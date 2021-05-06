@@ -28,12 +28,10 @@ const Welcome = styled.div`
     margin-right: 1rem;
   }
 `;
+
 class Routes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentUser: null
-    }
   }
   unsubscribeFromAuth = null;
 
@@ -50,13 +48,13 @@ class Routes extends React.Component {
 
       }
       this.props.setCurrentUser(userAuth);
-      // console.log(userAuth);
     });
   }
   componentWillUnmount() {
     if (this.unsubscribeFromAuth != null)
       this.unsubscribeFromAuth();
   }
+
   render() {
     return <div>
       <Route path="/" exact>
@@ -77,7 +75,8 @@ class Routes extends React.Component {
         <Route path="/practise" exact component={Practise} />
         <Route path="/redux-practise" exact component={ReduxPractise} />
         <Route path="/practise/shop" exact component={ShopPage} />
-        <Route path="/practise/signin" exact render={() => this.props.currentUser ? (<Redirect to='/practise' />) : (<SigninSignup />)}
+        <Route path="/practise/signin" exact
+          render={() => this.props.currentUser ? (<Redirect to='/practise' />) : (<SigninSignup />)}
         />
       </Switch>
     </div>
