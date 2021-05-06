@@ -1,10 +1,12 @@
 import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import styled from "styled-components";
 
 import Book from "./containers/Book/Book";
 import Practise from "./containers/Practise/Practise";
 import { auth, createUserProfileDocument } from './containers/Practise/firebase/firebase.util';
+import { setCurrentUser } from './containers/Practise/redux/user/user.actions';
 
 import {
   PractiseLinks,
@@ -28,7 +30,7 @@ const Welcome = styled.div`
     margin-right: 1rem;
   }
 `;
-export default class Routes extends React.Component {
+class Routes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,27 +45,21 @@ export default class Routes extends React.Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
-          }, () => {
-            //  console.log(this.state);
+          this.props.setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data()
           });
         });
 
       }
-      this.setState({ currentUser: userAuth });
+      this.props.setCurrentUser(userAuth);
       // console.log(userAuth);
     });
   }
-
   componentWillUnmount() {
     if (this.unsubscribeFromAuth != null)
       this.unsubscribeFromAuth();
   }
-
   render() {
     return <div>
       <Route path="/" exact>
@@ -78,7 +74,7 @@ export default class Routes extends React.Component {
         </Welcome>
       </Route>
       <Route path="/practise">
-        <Header currentUser={this.state.currentUser} />
+        <Header />
       </Route>
       <Switch>
         <Route path="/books" exact component={Book} />
@@ -90,3 +86,8 @@ export default class Routes extends React.Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(Routes);

@@ -11,4 +11,8 @@ const store = createStore(
 
 export default store;
 
-//https://react-redux.js.org/introduction/getting-started
+/**
+ https://react-redux.js.org/introduction/getting-started
+ https://react-redux.js.org/api/connect
+
+ */
