@@ -12,6 +12,8 @@ import Header from "./containers/Practise/components/header/header";
 import ReduxPractise from "./containers/ReduxPractise/ReduxPractise";
 import ShopPage from "./containers/Practise/pages/shop/shop";
 import SigninSignup from "./containers/Practise/pages/signin-signup/signin-signup";
+import { selectCurrentUser } from "./containers/Practise/redux/user/user.selectors";
+import CheckoutPage from './containers/Practise/pages/checkout/checkout';
 
 const Welcome = styled.div`
   display: flex;
@@ -75,6 +77,7 @@ class Routes extends React.Component {
         <Route path="/practise" exact component={Practise} />
         <Route path="/redux-practise" exact component={ReduxPractise} />
         <Route path="/practise/shop" exact component={ShopPage} />
+        <Route path="/practise/checkout" exact component={CheckoutPage} />
         <Route path="/practise/signin" exact
           render={() => this.props.currentUser ? (<Redirect to='/practise' />) : (<SigninSignup />)}
         />
@@ -83,8 +86,8 @@ class Routes extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = state => ({
+  currentUser: selectCurrentUser(state)
 });
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
